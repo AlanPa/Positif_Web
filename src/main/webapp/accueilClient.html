@@ -13,10 +13,17 @@
         <center><img src="1.jpg"></center>
         <script>
             function deconnexion(){
-                
+                session.removeAttribute("mail");
+                session.removeAttribute("nom");
+                session.removeAttribute("prenom");
+                session.removeAttribute("couleur");
+                session.removeAttribute("animal");
+                session.removeAttribute("zodiaque");
+                session.removeAttribute("chinois");
             }
             function affiche(personne) {
                 var nomPersonne = document.getElementById('nomPersonne');
+                nomPersone.innerHTML = "<h1 id='nomPersonne'>"+personne.nom+" "+personne.prenom+"</h1>";
             }
             $(document).ready(function () {
                 $.ajax({

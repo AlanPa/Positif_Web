@@ -162,25 +162,28 @@ public class Action
     
     public static String ObtenirClient(HttpServletRequest request, HttpSession session){
         
-        Client c = Service.obtenirClient(request.getParameter("mail")); 
+        String prenom = session.getAttribute("prenom").toString();
+        String nom = session.getAttribute("nom").toString();
+        String animal = session.getAttribute("animal").toString();
+        String zodiaque = session.getAttribute("prenom").toString();
+        String chinois = session.getAttribute("chinois").toString();
+        String couleur = session.getAttribute("couleur").toString();
         
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String animal = request.getParameter("animal");
-        String zodiaque = request.getParameter("zodiaque");
-        String chinois = request.getParameter("chinois");
-        String couleur = request.getParameter("couleur");
         
         JsonObject infosPersonnes = new JsonObject();
-        JsonObject containter = new JsonObject();
+        JsonObject container = new JsonObject();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         
         infosPersonnes.addProperty("prenom", prenom);
         infosPersonnes.addProperty("nom", nom);
         infosPersonnes.addProperty("animal", animal);
-        infosPersonnes.addProperty("zodique", zodiaque);
+        infosPersonnes.addProperty("zodiaque", zodiaque);
         infosPersonnes.addProperty("chinois", chinois);
         infosPersonnes.addProperty("couleur", couleur);
-        return"PAS FINI";
+        
+        container.add("infos", infosPersonnes);
+        
+        return gson.toJson(container);
     }
     
     public static String RecupererHistorique(HttpServletRequest request, HttpSession session)

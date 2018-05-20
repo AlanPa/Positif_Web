@@ -162,18 +162,27 @@ public class Action
     
     public static String ObtenirClient(HttpServletRequest request, HttpSession session){
         
-        String mail = session.getAttribute("mail").toString();
-        Client c = Service.obtenirClient(mail); 
+        String prenom = session.getAttribute("prenom").toString();
+        String nom = session.getAttribute("nom").toString();
+        String animal = session.getAttribute("animal").toString();
+        String zodiaque = session.getAttribute("prenom").toString();
+        String chinois = session.getAttribute("chinois").toString();
+        String couleur = session.getAttribute("couleur").toString();
         
-        JsonObject infosPers = new JsonObject();
-        JsonObject containter = new JsonObject();
+        
+        JsonObject infosPersonnes = new JsonObject();
+        JsonObject container = new JsonObject();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         
         infosPersonnes.addProperty("prenom", prenom);
         infosPersonnes.addProperty("nom", nom);
         infosPersonnes.addProperty("animal", animal);
-        infosPersonnes.addProperty("zodique", zodiaque);
+        infosPersonnes.addProperty("zodiaque", zodiaque);
         infosPersonnes.addProperty("chinois", chinois);
         infosPersonnes.addProperty("couleur", couleur);
-        return"PAS FINI";
+        
+        container.add("infos", infosPersonnes);
+        
+        return gson.toJson(container);
     }
 }

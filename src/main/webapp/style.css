@@ -1,11 +1,6 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
-    Created on : 24 avr. 2018, 16:20:48
-    Author     : alan
+    Created on : 24 avr. 2018, 17:11:20
+    Author     : yhua, apaugois
 */
 body {
     text-align: center;
@@ -16,5 +11,30 @@ body {
 h1
 {
     font-family: URW Chancery L, cursive;
+}
+
+ .sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #848484;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #111;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav a:hover {
+    color: #f1f1f1;
 }
 

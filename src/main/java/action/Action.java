@@ -78,6 +78,7 @@ public class Action
             {
                 session.setAttribute("nom",e.getNom());  
                 session.setAttribute("prenom",e.getPrenom());
+                session.setAttribute("mail", e.getMail());
                 jsonConnex.addProperty("type", "Employe");
                 
                 //jsonConnex.addProperty("listeMedium", e.getListMedium());
@@ -115,6 +116,7 @@ public class Action
             {
               session.setAttribute("nom",c.getNom());  
               session.setAttribute("prenom",c.getPrenom());
+              session.setAttribute("mail", c.getAdresseMail());
               jsonConnex.addProperty("type", "Client");
               jsonConnex.addProperty("nom",c.getNom());  
               jsonConnex.addProperty("prenom",c.getPrenom());
@@ -155,7 +157,7 @@ public class Action
     
     public static String ObtenirClient(HttpServletRequest request, HttpSession session){
         
-        Client c = Service.obtenirClient(mail); 
+        Client c = Service.obtenirClient(request.getParameter("mail")); 
         
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
@@ -173,5 +175,6 @@ public class Action
         infosPersonnes.addProperty("zodique", zodiaque);
         infosPersonnes.addProperty("chinois", chinois);
         infosPersonnes.addProperty("couleur", couleur);
+        return"PAS FINI";
     }
 }

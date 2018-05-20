@@ -117,6 +117,11 @@ public class Action
               session.setAttribute("nom",c.getNom());  
               session.setAttribute("prenom",c.getPrenom());
               session.setAttribute("mail", c.getAdresseMail());
+              session.setAttribute("couleur", c.getCouleur());
+              session.setAttribute("animal",c.getAnimalTotem());
+              session.setAttribute("zodiaque",c.getSigneZodiaque());
+              session.setAttribute("chinois",c.getSigneChinois());
+              
               jsonConnex.addProperty("type", "Client");
               jsonConnex.addProperty("nom",c.getNom());  
               jsonConnex.addProperty("prenom",c.getPrenom());

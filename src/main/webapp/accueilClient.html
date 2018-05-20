@@ -9,28 +9,27 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <center><h1>John Doe</h1></center>
+        <center><h1 id="nomPersonne">John Doe</h1></center>
         <center><img src="1.jpg"></center>
         <script>
             function deconnexion(){
                 
             }
             function affiche(personne) {
-            
+                var nomPersonne = document.getElementById('nomPersonne');
             }
             $(document).ready(function () {
-            $.ajax({
-            url: './ActionServlet',
-            method: 'POST',
-            data: {
-            todo: 'obtenirClient'
-            },
-           dataType: 'json'
-            }).done(function (data) {
-            $('#liste-personnes').empty();
-           var personnes = data.personnes;
-            
-            });
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                    todo: 'obtenirClient'
+                    },
+                   dataType: 'json'
+                }).done(function (data) {
+                    $('#liste-personnes').empty();
+                    var personnes = data.personnes;
+                });
             });
             </script>
     <div id ="Sidenav" class="sidenav">
@@ -39,8 +38,10 @@
         <a href="historique.html">Historique</a>
         <a href="parametres.html">Paramètres</a>
         <a href="../../../../../Téléchargements/Service.java"></a>
+        <!-- Attention, ce chemin est plus ou moins absolu ! -->
     </div>
-        <button class = "button" onclick ="location.href = 'index.html';" >Deconnexion</button>
+        <button class = "button" onclick ="location.href = 'index.html';" >Déconnexion</button>
+        <!-- faire quelque chose pour fermer la session -->
     </body>
     
 </html>

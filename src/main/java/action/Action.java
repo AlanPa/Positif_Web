@@ -153,5 +153,25 @@ public class Action
         return(gson.toJson(container));
 }
     
-    
+    public static String ObtenirClient(HttpServletRequest request, HttpSession session){
+        
+        Client c = Service.obtenirClient(mail); 
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String animal = request.getParameter("animal");
+        String zodiaque = request.getParameter("zodiaque");
+        String chinois = request.getParameter("chinois");
+        String couleur = request.getParameter("couleur");
+        
+        JsonObject infosPersonnes = new JsonObject();
+        JsonObject containter = new JsonObject();
+        
+        infosPersonnes.addProperty("prenom", prenom);
+        infosPersonnes.addProperty("nom", nom);
+        infosPersonnes.addProperty("animal", animal);
+        infosPersonnes.addProperty("zodique", zodiaque);
+        infosPersonnes.addProperty("chinois", chinois);
+        infosPersonnes.addProperty("couleur", couleur);
+    }
 }

@@ -43,14 +43,21 @@ public class ActionServlet extends HttpServlet {
         String action=request.getParameter("action");
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
-            if(action.equals("inscription"))
-            {
-                
-                out.print(Action.Inscription(request));
-            }
-            else if(action.equals("connexion"))
-            {
-               out.print(Action.Connexion(request,session));
+            switch (action) {
+                case "inscription":
+                    out.print(Action.Inscription(request));
+                    break;
+                case "connexion":
+                    out.print(Action.Connexion(request,session));
+                    break;
+                case "obtenirClient":
+                    out.print(Action.ObtenirClient(request, session));
+                    break;
+                case "deconnexion":
+                    
+                    break;
+                default:
+                    break;
             }
         }
     }

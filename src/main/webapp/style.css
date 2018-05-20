@@ -26,7 +26,7 @@ h1
     padding-top: 60px;
 }
 
-    .sidenav a {
+.sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -38,3 +38,7 @@ h1
     color: #f1f1f1;
 }
 
+.button{
+    /* à remplir*/
+    color : red;
+}

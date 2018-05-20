@@ -155,23 +155,21 @@ public class Action
     
     public static String ObtenirClient(HttpServletRequest request, HttpSession session){
         
+        String mail = session.getAttribute("mail").toString();
         Client c = Service.obtenirClient(mail); 
         
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String animal = request.getParameter("animal");
-        String zodiaque = request.getParameter("zodiaque");
-        String chinois = request.getParameter("chinois");
-        String couleur = request.getParameter("couleur");
-        
-        JsonObject infosPersonnes = new JsonObject();
+        JsonObject infosPers = new JsonObject();
         JsonObject containter = new JsonObject();
         
-        infosPersonnes.addProperty("prenom", prenom);
-        infosPersonnes.addProperty("nom", nom);
-        infosPersonnes.addProperty("animal", animal);
-        infosPersonnes.addProperty("zodique", zodiaque);
-        infosPersonnes.addProperty("chinois", chinois);
-        infosPersonnes.addProperty("couleur", couleur);
+        infosPers.addProperty("type", "Client");
+        infosPers.addProperty("nom",c.getNom());  
+        infosPers.addProperty("prenom",c.getPrenom());
+        infosPers.addProperty("couleur", c.getCouleur());
+        infosPers.addProperty("animal",c.getAnimalTotem());
+        infosPers.addProperty("zodiaque",c.getSigneZodiaque());
+        infosPers.addProperty("chinois",c.getSigneChinois());
+        
+        
+        
     }
 }

@@ -14,6 +14,7 @@ import entities.Employe;
 import entities.Medium;
 import entities.Voyance;
 import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -180,12 +181,17 @@ public class Action
         Client c = Service.obtenirClient(session.getAttribute("mail").toString());
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject jsonConnex = new JsonObject();
-                      
+        DateFormat f_date = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat f_duree = new SimpleDateFormat("HH:mm:ss");   
               JsonArray historique = new JsonArray();
               for (Voyance v: c.getListVoyances()){
                   JsonObject voyance = new JsonObject();
-                  voyance.addProperty("date",v.getHeureDebut().getTime());
-                  voyance.addProperty("duree", (v.getHeureFin().getTime()-(v.getHeureDebut()).getTime()) );
+                  String date = f_date.format(v.getHeureDebut());
+                  long duree = (v.getHeureFin().getTime()-(v.getHeureDebut()).getTime())/1000;
+                  int heure = (int) (duree/3600);
+                  int min = (int) (duree/60)-heure*60;
+                  voyance.addProperty("date",date);
+                  voyance.addProperty("duree", heure+"h"+min);
                   voyance.addProperty("nom", v.getMedium().getNom());
                   historique.add(voyance);
                   

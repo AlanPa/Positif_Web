@@ -78,6 +78,7 @@ public class Action
             {
                 session.setAttribute("nom",e.getNom());  
                 session.setAttribute("prenom",e.getPrenom());
+                session.setAttribute("mail", e.getMail());
                 jsonConnex.addProperty("type", "Employe");
                 
                 //jsonConnex.addProperty("listeMedium", e.getListMedium());
@@ -115,6 +116,12 @@ public class Action
             {
               session.setAttribute("nom",c.getNom());  
               session.setAttribute("prenom",c.getPrenom());
+              session.setAttribute("mail", c.getAdresseMail());
+              session.setAttribute("couleur", c.getCouleur());
+              session.setAttribute("animal",c.getAnimalTotem());
+              session.setAttribute("zodiaque",c.getSigneZodiaque());
+              session.setAttribute("chinois",c.getSigneChinois());
+              
               jsonConnex.addProperty("type", "Client");
               jsonConnex.addProperty("nom",c.getNom());  
               jsonConnex.addProperty("prenom",c.getPrenom());
@@ -161,15 +168,12 @@ public class Action
         JsonObject infosPers = new JsonObject();
         JsonObject containter = new JsonObject();
         
-        infosPers.addProperty("type", "Client");
-        infosPers.addProperty("nom",c.getNom());  
-        infosPers.addProperty("prenom",c.getPrenom());
-        infosPers.addProperty("couleur", c.getCouleur());
-        infosPers.addProperty("animal",c.getAnimalTotem());
-        infosPers.addProperty("zodiaque",c.getSigneZodiaque());
-        infosPers.addProperty("chinois",c.getSigneChinois());
-        
-        return "";
-        
+        infosPersonnes.addProperty("prenom", prenom);
+        infosPersonnes.addProperty("nom", nom);
+        infosPersonnes.addProperty("animal", animal);
+        infosPersonnes.addProperty("zodique", zodiaque);
+        infosPersonnes.addProperty("chinois", chinois);
+        infosPersonnes.addProperty("couleur", couleur);
+        return"PAS FINI";
     }
 }

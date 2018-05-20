@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Posit'IF</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <h1>Posit'IF</h1>
+        <input type ='text' id="email"  placeholder="Adresse email"><br>
+        <button id = "bouton-connexion"> Se connecter</button><br>
+        <div id="message"></div>
+        <button onclick="location.href = 'inscription.html';"> S'inscrire</button>
+        <script>
+            
+            function connexion() {
+                var champLogin = $('#email').val();
+                $('#message').html('Connexion en cours...');
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        action: 'connexion',
+                        mail: champLogin,
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    var connexion=data.connex;
+                    
+                    //console.log(data.);
+                    if(connexion.type === "Client")
+                    {
+                        document.location.href="accueilClient.html"; 
+                    }
+                    else if (connexion.type === "Employe")
+                    {
+                        document.location.href="inscription.html";
+                    }
+                    else{
+                        console.log("err");
+                        $('#message').html('<span style="color:red;">Login incorrect</span>');
+                    }
+                }).fail(function(){
+                    $('#message').html('Echec. ');        
+                });
+            }
+
+            $(document).ready(function () {
+                // ajout d'un "handler" sur le clic du bouton de connexion
+                $('#bouton-connexion').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Click sur le bouton "Se Connecter"');
+                    // appel de la fonction connexion
+                    connexion();
+                });
+            });
+            
+            
+            
+        </script>
+        
+        
+        
+        
+    </body>
+</html>

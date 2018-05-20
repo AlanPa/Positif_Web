@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+            
+        
+        <title>Accueil Client</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="newcss.css" />
+    </head>
+    <body>
+        <center><h1>John Doe</h1></center>
+        <center><img src="1.jpg"></center>
+        <script>
+            function deconnexion(){
+                
+            }
+            function affiche(personne) {
+            
+            }
+            $(document).ready(function () {
+            $.ajax({
+            url: './ActionServlet',
+            method: 'POST',
+            data: {
+            todo: 'obtenirClient'
+            },
+           dataType: 'json'
+            }).done(function (data) {
+            $('#liste-personnes').empty();
+           var personnes = data.personnes;
+            
+            });
+            });
+            </script>
+    <div id ="Sidenav" class="sidenav">
+        <a href="index.html">Profil</a>
+        <a href="mediums.html">Médiums</a>
+        <a href="historique.html">Historique</a>
+        <a href="parametres.html">Paramètres</a>
+        <a href="../../../../../Téléchargements/Service.java"></a>
+    </div>
+        <button class = "button" onclick ="location.href = 'index.html';" >Deconnexion</button>
+    </body>
+    
+</html>

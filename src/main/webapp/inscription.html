@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Inscription</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <div >
+            <p><label for="prenom">Prénom</label> : <input type="text" name="prenom" id="prenom" /></p>
+            <p><label for="nom">Nom</label> : <input type="text" name="nom" id="nom" /></p>
+            <p><label for="civilite">Civilité</label> :
+                <select name="civilite" id="civilite">
+
+                     <option value="M">M.</option>
+
+                     <option value="Mme">Mme.</option>
+
+                    <option value="Mlle">Mlle.</option>
+
+                </select>
+           </p>
+           <p><label for="date">Date de naissance</label> : <input type="date" name="date" id="date" /></p>
+           <p><label for="mail">Email</label> : <input type="text" name="mail" id="mail" /></p>
+           <p><label for="adresse">Adresse postale</label> : <input type="text" name="adresse" id="adresse" /></p>
+           <p><label for="tel">Télephone</label> : <input type="text" name="tel" id="tel" /></p>
+        </div>
+        <button  id = "bouton_inscription" >S'inscrire</button>
+        <div id="message"> </div>
+        
+        
+       <script>
+
+            function Inscription() {
+                var champPrenom = $('#prenom').val();
+                var champNom = $('#nom').val();
+                var champCivilite = $('#civilite').val();
+                var champDate = $('#date').val();
+                var champMail = $('#mail').val();
+                var champAdresse = $('#adresse').val();
+                var champTel = $('#tel').val();
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        action: 'inscription',
+                        prenom: champPrenom,
+                        nom: champNom,
+                        civilite: champCivilite,
+                        date: champDate,
+                        mail: champMail,
+                        adresse: champAdresse,
+                        tel: champTel,
+   
+                    },
+                    dataType: 'text'
+                }).done(function (data) {
+                    // ici votre code...
+                     console.log(data);
+                    // si connexion ok, aller sur la page suivante :
+                    if(data==="True")
+                    {
+                        window.open('PopUpInscrPositive.html','nom_de_ma_popup','menubar=no, scrollbars=no, top=500, left=500, width=300, height=100');
+                    }
+                    else if(data==="False")
+                    {
+                        window.open('PopUpInscrNegative.html','nom_de_ma_popup','menubar=no, scrollbars=no, top=100, left=100, width=300, height=100');
+                    }
+                    else
+                    {
+                        $('#message').html('Veuilez entrer une date correcte');
+                    }
+                    
+                }).fail(function(){
+                    $('#message').html('Echec de type de données.');        
+                });
+            }
+
+            $(document).ready(function () {
+                // ajout d'un "handler" sur le clic du bouton de connexion
+                var element = document.getElementById('bouton_inscription');
+                element.onclick = function() {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Click sur le bouton "S\'inscrire"');
+                    // appel de la fonction connexion
+                    Inscription();
+                };
+            });
+            
+        </script>
+    </body>
+</html>

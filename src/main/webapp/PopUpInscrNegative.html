@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PopUpInscriptionNegative</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+    <center><div>Inscription non valide!</div></center>
+    <center><div>L'adresse email existe déjà!</div></center>
+    <center><div>Hey!</div></center>
+    <center><button class="button" id="bouton-retour" onclick='Retour()' >Redirection vers l'accueil.</button></center>
+    <script>
+         function Retour() {
+            window.opener.location.href='./index.html';
+            window.close() ; 
+         }
+         $(document).ready(function () {
+                // ajout d'un "handler" sur le clic du bouton de connexion
+                var element = document.getElementById('bouton-retour');
+                element.onclick = function() {
+                    Retour();
+                };
+            });
+    </script>
+    </body>
+</html>
+

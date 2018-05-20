@@ -158,10 +158,10 @@ public class Action
         String chinois = session.getAttribute("chinois").toString();
         String couleur = session.getAttribute("couleur").toString();
         
-        
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject infosPersonnes = new JsonObject();
         JsonObject container = new JsonObject();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        
         
         infosPersonnes.addProperty("prenom", prenom);
         infosPersonnes.addProperty("nom", nom);
@@ -171,7 +171,7 @@ public class Action
         infosPersonnes.addProperty("couleur", couleur);
         
         container.add("infos", infosPersonnes);
-        
+        System.out.println(container);
         return gson.toJson(container);
     }
     

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <table id="tableau" style="border: 1px solid black;">
+            <tr>
+                <th> Date</th>
+                <th> Durée</th>
+                <th> Médium</th>
+            </tr>
+        </table>
+        
+        <script>
+            function recupHistorique()
+            {
+                
+            }
+            $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        action: 'recupererHistorique'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    var hist = data.historique;
+                    console.log(hist);
+                    
+                }).fail(function(){
+                    $('#message').html('Echec. ');        
+                });
+            
+
+            $(document).ready(function () {
+                    recupHistorique();
+            });
+            
+        </script>
+    </body>
+</html>

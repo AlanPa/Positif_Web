@@ -169,7 +169,7 @@ public class Action
         infosPers.addProperty("zodiaque",c.getSigneZodiaque());
         infosPers.addProperty("chinois",c.getSigneChinois());
         
-        
+        return "";
         
     }
 }

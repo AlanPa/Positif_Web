@@ -6,6 +6,7 @@
         
         <title>Accueil Client</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
@@ -27,7 +28,7 @@
                 session.removeAttribute("zodiaque");
                 session.removeAttribute("chinois");
             }
-            function affiche(personne) {
+            function affiche() {
                 var nomPersonne = document.getElementById('nomPersonne');
                 var zodiaque = document.getElementById('zodiaque');
                 var animal = document.getElementById('animal');
@@ -46,13 +47,19 @@
                     url: './ActionServlet',
                     method: 'POST',
                     data: {
-                    todo: 'obtenirClient'
+                    action: 'obtenirClient'
                     },
-                   dataType: 'json'
+                    dataType: 'json'
                 }).done(function (data) {
-                    $('#liste-personnes').empty();
-                    var personnes = data.personnes;
+                    console.log("On est dans l'accueil !");
+                    var personne = data.infos;
+                    nomPersonne.innerHTML = personne.nom+" "+personne.prenom;
                 });
+                
+                
+            }
+            $(document).ready(function () {
+               affiche(); 
             });
             </script>
     <div id ="Sidenav" class="sidenav">

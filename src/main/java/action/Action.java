@@ -129,17 +129,7 @@ public class Action
               jsonConnex.addProperty("animal",c.getAnimalTotem());
               jsonConnex.addProperty("zodiaque",c.getSigneZodiaque());
               jsonConnex.addProperty("chinois",c.getSigneChinois());
-              
-              JsonArray historique = new JsonArray();
-              for (Voyance v: c.getListVoyances()){
-                  JsonObject voyance = new JsonObject();
-                  voyance.addProperty("date",v.getHeureDebut().getTime());
-                  voyance.addProperty("duree", (v.getHeureFin().getTime()-(v.getHeureDebut()).getTime()) );
-                  voyance.addProperty("nom", v.getMedium().getNom());
-                  historique.add(voyance);
-                  
-              }
-              jsonConnex.add("historique", historique);
+
               container.add("connex", jsonConnex);
             }
             else
@@ -181,5 +171,24 @@ public class Action
         infosPersonnes.addProperty("chinois", chinois);
         infosPersonnes.addProperty("couleur", couleur);
         return"PAS FINI";
+    }
+    
+    public static String RecupererHistorique(HttpServletRequest request, HttpSession session)
+    {
+        Client c = Service.obtenirClient(session.getAttribute("mail").toString());
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonObject jsonConnex = new JsonObject();
+                      
+              JsonArray historique = new JsonArray();
+              for (Voyance v: c.getListVoyances()){
+                  JsonObject voyance = new JsonObject();
+                  voyance.addProperty("date",v.getHeureDebut().getTime());
+                  voyance.addProperty("duree", (v.getHeureFin().getTime()-(v.getHeureDebut()).getTime()) );
+                  voyance.addProperty("nom", v.getMedium().getNom());
+                  historique.add(voyance);
+                  
+              }
+              jsonConnex.add("historique", historique);
+              return(gson.toJson(historique));
     }
 }

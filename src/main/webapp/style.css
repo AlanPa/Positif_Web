@@ -38,7 +38,30 @@ h1
     color: #f1f1f1;
 }
 
-.button{
+.button {
     /* à remplir*/
     color : red;
+}
+
+.wrapper {
+    display: grid;
+    grid-template: 
+        "zodiaque animal"
+        "couleur chinois";
+}
+
+wrapper.zodiaque{
+    grid-area:zodiaque;
+}
+
+wrapper.animal{
+    grid-area:animal;
+}
+
+wrapper.couleur{
+    grid-area:couleur;
+}
+
+wrapper.chinois{
+    grid-area:chinois;
 }

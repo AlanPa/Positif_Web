@@ -12,6 +12,12 @@
     <body>
         <center><h1 id="nomPersonne">John Doe</h1></center>
         <center><img src="1.jpg"></center>
+        <section class = "wrapper" id="infos">
+            <div id="zodiaque" class="zodiaque"></div>
+            <div id="animal" class="animal"></div>
+            <div id="couleur" class="couleur"></div>
+            <div id="chinois" class="chinois"></div>
+        </section>
         <script>
             function deconnexion(){
                 session.removeAttribute("mail");
@@ -24,6 +30,19 @@
             }
             function affiche() {
                 var nomPersonne = document.getElementById('nomPersonne');
+                var zodiaque = document.getElementById('zodiaque');
+                var animal = document.getElementById('animal');
+                var couleur = document.getElementById('couleur');
+                var chinois = document.getElementById('chinois');
+                
+                nomPersonne.innerHTML = "<h1 id='nomPersonne'>"+personne.nom+" "+personne.prenom+"</h1>";
+                zodiaque.innerHTML = "<p>Signe du Zodiaque</br>"+personne.zodiaque+"</p>";
+                animal.innerHTML = "<p>Animal totem</br>"+personne.animal+"</p>";
+                couleur.innerHTML = "<p>Couleur porte-bonheur</br>"+personne.couleur+"</p>";
+                chinois.innerHTML = "<p>Signe astrologique</br>"+personne.chinois+"</p>";
+                
+            }
+            $(document).ready(function () {
                 $.ajax({
                     url: './ActionServlet',
                     method: 'POST',

@@ -183,11 +183,11 @@ public class Action
 
     public static void Deconnexion(HttpSession session) {
         session.removeAttribute("nom");
-                session.removeAttribute("prenom");
-                session.removeAttribute("couleur");
-                session.removeAttribute("animal");
-                session.removeAttribute("zodiaque");
-                session.removeAttribute("chinois");
-                session.removeAttribute("mail");
+        session.removeAttribute("prenom");
+        session.removeAttribute("couleur");
+        session.removeAttribute("animal");
+        session.removeAttribute("zodiaque");
+        session.removeAttribute("chinois");
+        session.removeAttribute("mail");
     }
 }

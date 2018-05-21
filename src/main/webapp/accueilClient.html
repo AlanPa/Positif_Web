@@ -30,20 +30,21 @@
             <a href="../../../../../Téléchargements/Service.java"></a>
             <!-- Attention, ce chemin est plus ou moins absolu ! -->
         </div>
-        <button class = "button" onclick ="location.href = 'index.html';" >Déconnexion</button>
+        <button class = "button" onclick = deconnexion(); >Déconnexion</button>
             <!-- faire quelque chose pour fermer la session -->
             
             <script>
             function deconnexion(){
-                $(document).ready(function () {
-                // ajout d'un "handler" sur le clic du bouton de connexion
-                var element = document.getElementById('dec');
-                element.onclick = function() {
-                    // affichage pour debugage dans la console javascript du navigateur
-                    // appel de la fonction connexion
-                    deconnexion();
-                };
-            });
+                $.ajax({
+                url: './ActionServlet',
+                method: 'POST',
+                data: {
+                    todo: 'deconnexion'
+                }
+                }).done(function(data){
+                    document.location.href="index.html";
+
+                });
             }
             function affiche() {
                 

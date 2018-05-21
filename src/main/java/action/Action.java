@@ -82,26 +82,6 @@ public class Action
                 session.setAttribute("mail", e.getMail());
                 jsonConnex.addProperty("type", "Employe");
                 
-                //jsonConnex.addProperty("listeMedium", e.getListMedium());
-                JsonArray listeMed = new JsonArray();
-                 for (Medium m: e.getListMedium()){
-                  JsonObject medium = new JsonObject();
-                  medium.addProperty("date",m.getNom());
-                  listeMed.add(medium);
-                  
-              }
-                jsonConnex.add("listeMed", listeMed);
-                
-                JsonArray historique = new JsonArray();
-                for (Voyance v: e.getListeVoyances()){
-                  JsonObject voyance = new JsonObject();
-                  voyance.addProperty("date",v.getHeureDebut().getTime());
-                  voyance.addProperty("duree", (v.getHeureFin().getTime()-(v.getHeureDebut()).getTime()) );
-                  voyance.addProperty("nom", v.getMedium().getNom());
-                  historique.add(voyance);
-                  
-              }
-                jsonConnex.add("historique", historique);
                 container.add("connex", jsonConnex);
             }
             else
@@ -124,23 +104,11 @@ public class Action
               session.setAttribute("chinois",c.getSigneChinois());
               
               jsonConnex.addProperty("type", "Client");
-              jsonConnex.addProperty("nom",c.getNom());  
-              jsonConnex.addProperty("prenom",c.getPrenom());
-              jsonConnex.addProperty("couleur", c.getCouleur());
-              jsonConnex.addProperty("animal",c.getAnimalTotem());
-              jsonConnex.addProperty("zodiaque",c.getSigneZodiaque());
-              jsonConnex.addProperty("chinois",c.getSigneChinois());
               container.add("connex", jsonConnex);
             }
             else
             {
               jsonConnex.addProperty("type", "error");
-              jsonConnex.addProperty("nom","error");  
-              jsonConnex.addProperty("prenom","error");
-              jsonConnex.addProperty("couleur", "error");
-              jsonConnex.addProperty("animal","error");
-              jsonConnex.addProperty("zodiaque","error");
-              jsonConnex.addProperty("chinois","error"); 
               container.add("connex", jsonConnex); 
             }
             
@@ -158,6 +126,14 @@ public class Action
         String zodiaque = session.getAttribute("zodiaque").toString();
         String chinois = session.getAttribute("chinois").toString();
         String couleur = session.getAttribute("couleur").toString();
+        String mail = session.getAttribute("mail").toString();
+        
+        DateFormat f_date = new SimpleDateFormat("yyyy-MM-dd");
+        Client cl = Service.obtenirClient(mail);
+        String adresse = cl.getAdressePostale();
+        String date = f_date.format(cl.getDateNaissance());
+        String tel = cl.getNumeroTel();
+        String civilite = cl.getCivilite();
         
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject infosPersonnes = new JsonObject();
@@ -170,6 +146,11 @@ public class Action
         infosPersonnes.addProperty("zodiaque", zodiaque);
         infosPersonnes.addProperty("chinois", chinois);
         infosPersonnes.addProperty("couleur", couleur);
+        infosPersonnes.addProperty("mail", mail);
+        infosPersonnes.addProperty("adresse", adresse);
+        infosPersonnes.addProperty("tel", tel);
+        infosPersonnes.addProperty("date", date);
+        infosPersonnes.addProperty("civilite", civilite);
         
         container.add("infos", infosPersonnes);
         System.out.println(container);
@@ -198,5 +179,15 @@ public class Action
               }
               jsonConnex.add("historique", historique);
               return(gson.toJson(historique));
+    }
+
+    public static void Deconnexion(HttpSession session) {
+        session.removeAttribute("nom");
+                session.removeAttribute("prenom");
+                session.removeAttribute("couleur");
+                session.removeAttribute("animal");
+                session.removeAttribute("zodiaque");
+                session.removeAttribute("chinois");
+                session.removeAttribute("mail");
     }
 }

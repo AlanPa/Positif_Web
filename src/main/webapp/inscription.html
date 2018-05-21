@@ -13,27 +13,28 @@ and open the template in the editor.
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div >
+        <div>
             <p><label for="prenom">Prénom</label> : <input type="text" name="prenom" id="prenom" /></p>
             <p><label for="nom">Nom</label> : <input type="text" name="nom" id="nom" /></p>
             <p><label for="civilite">Civilité</label> :
                 <select name="civilite" id="civilite">
 
-                     <option value="M">M.</option>
+                     <option value="M">M</option>
 
-                     <option value="Mme">Mme.</option>
+                     <option value="Mme">Mme</option>
 
-                    <option value="Mlle">Mlle.</option>
+                    <option value="Mlle">Mlle</option>
 
                 </select>
            </p>
            <p><label for="date">Date de naissance</label> : <input type="date" name="date" id="date" /></p>
            <p><label for="mail">Email</label> : <input type="text" name="mail" id="mail" /></p>
            <p><label for="adresse">Adresse postale</label> : <input type="text" name="adresse" id="adresse" /></p>
-           <p><label for="tel">Télephone</label> : <input type="text" name="tel" id="tel" /></p>
+           <p><label for="tel">Téléphone</label> : <input type="text" name="tel" id="tel" /></p>
+           <button  id = "bouton_inscription" >S'inscrire</button>
+           <div id="message"> </div>
         </div>
-        <button  id = "bouton_inscription" >S'inscrire</button>
-        <div id="message"> </div>
+        
         
         
        <script>

@@ -5,7 +5,7 @@
 body {
     text-align: center;
     font-size: 400%;
-    
+    width: 75%;
 }
 
 h1
@@ -15,7 +15,7 @@ h1
 
  .sidenav {
     height: 100%;
-    width: 250px;
+    width: 24%;
     position: fixed;
     z-index: 1;
     top: 0;

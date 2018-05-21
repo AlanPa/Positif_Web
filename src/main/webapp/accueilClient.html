@@ -20,7 +20,19 @@
             <div id="chinois" class="chinois"></div>
         </section>
         </div>
-        <script>
+        
+        <div id ="Sidenav" class="sidenav">
+            <a href="accueilClient.html">Profil</a>
+            <a href="mediums.html">Médiums</a>
+            <a href="historiqueClient.html">Historique</a>
+            <a href="parametres.html">Paramètres</a>
+            <a href="../../../../../Téléchargements/Service.java"></a>
+            <!-- Attention, ce chemin est plus ou moins absolu ! -->
+        </div>
+        <button class = "button" onclick ="location.href = 'index.html';" >Déconnexion</button>
+            <!-- faire quelque chose pour fermer la session -->
+            
+            <script>
             function deconnexion(){
                 session.removeAttribute("mail");
                 session.removeAttribute("nom");
@@ -53,24 +65,13 @@
                     animal.innerHTML = "<p>Animal totem</br>"+personne.animal+"</p>";
                     couleur.innerHTML = "<p>Couleur porte-bonheur</br>"+personne.couleur+"</p>";
                     chinois.innerHTML = "<p>Signe astrologique</br>"+personne.chinois+"</p>";
-                });
-                
+                });                
             }
             
             $(document).ready(function () {
                affiche(); 
             });
-            </script>
-    <div id ="Sidenav" class="sidenav">
-        <a href="accueilClient.html">Profil</a>
-        <a href="mediums.html">Médiums</a>
-        <a href="historiqueClient.html">Historique</a>
-        <a href="parametres.html">Paramètres</a>
-        <a href="../../../../../Téléchargements/Service.java"></a>
-        <!-- Attention, ce chemin est plus ou moins absolu ! -->
-    </div>
-        <button class = "button" onclick ="location.href = 'index.html';" >Déconnexion</button>
-        <!-- faire quelque chose pour fermer la session -->
+        </script>
     </body>
     
 </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div>
+            <p><label for="prenom">Prénom</label> : <input type="text" name="prenom" id="prenom"  disabled/></p>
+            <p><label for="nom">Nom</label> : <input type="text" name="nom" id="nom" disabled /></p>
+            <p><label for="civilite">Civilité</label> :
+                <select name="civilite" id="civilite"  disabled>
+
+                     <option value="M">M</option>
+
+                     <option value="Mme">Mme</option>
+
+                    <option value="Mlle">Mlle</option>
+
+                </select>
+           </p>
+           <p><label for="date">Date de naissance</label> : <input type="date" name="date" id="date" disabled /></p>
+           <p><label for="mail">Email</label> : <input type="text" name="mail" id="mail" disabled /></p>
+           <p><label for="adresse">Adresse postale</label> : <input type="text" name="adresse" id="adresse" /></p>
+           <p><label for="tel">Téléphone</label> : <input type="text" name="tel" id="tel" /></p>
+           <button  id = "bouton_valider" disabled>Valider</button>
+           <div id="message"> </div>
+        </div>
+        
+        <div id ="Sidenav" class="sidenav">
+            <a href="accueilClient.html">Profil</a>
+            <a href="mediums.html">Médiums</a>
+            <a href="historiqueClient.html">Historique</a>
+            <a href="parametres.html">Paramètres</a>
+        </div>
+        
+        <script>  
+            function recupInfos()
+            {
+                var prenom = document.getElementById('prenom');
+                var nom = document.getElementById('nom');
+                var civilite = document.getElementById('civilite');
+                var date = document.getElementById('date');
+                var mail = document.getElementById('mail');
+                var adresse = document.getElementById('adresse');
+                var tel = document.getElementById('tel');
+                
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                    action: 'obtenirClient'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    var personne = data.infos;
+                    console.log(personne.date);
+                    prenom.value = personne.prenom;
+                    nom.value = personne.nom;
+                    civilite.value = personne.civilite;
+                    date.value = personne.date;
+                    mail.value = personne.mail;
+                    adresse.value = personne.adresse;
+                    tel.value = personne.tel;  
+                });
+                
+            }
+             $(document).ready(function () {
+                    recupInfos();
+            });
+            
+        </script>
+    </body>
+</html>

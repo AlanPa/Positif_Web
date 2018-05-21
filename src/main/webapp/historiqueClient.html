@@ -37,7 +37,15 @@ and open the template in the editor.
                     dataType: 'json'
                 }).done(function (data) {
                     var hist = data.historique;
-                    console.log(hist);
+                    var res="";
+                    for(var i in hist)
+                    {
+                       res+="<tr>" ;
+                       res+= "<td>"+hist[i].date+"</td><td>"+hist[i].duree+"</td><td>"+hist[i].nom+"</td>";
+                       res+="</tr>" ;
+                    }
+                    
+                    $('#tableau').innerHTML(res);
                     
                 }).fail(function(){
                     $('#message').html('Echec. ');        

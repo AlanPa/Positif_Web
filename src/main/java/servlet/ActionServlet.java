@@ -54,12 +54,18 @@ public class ActionServlet extends HttpServlet {
                     out.print(Action.ObtenirClient(request, session));
                     break;
                 case "recupererHistorique":
-                        out.print(Action.RecupererHistorique(request, session));
-                        break;
+                    out.print(Action.RecupererHistorique(request, session));
+                    break;
+                case "recupererMedium":
+                    out.print(Action.RecupererMedium(request, session));
+                    break;
+                case "demanderVoyance":
+                    Action.DemanderVoyance(request, session);
+                    break;
                 case "deconnexion":
-                        Action.Deconnexion(session);
-                        session.invalidate();
-                        break;
+                    Action.Deconnexion(session);
+                    session.invalidate();
+                    break;
                 case "modification" :
                     Action.Modification(request);
                     break;

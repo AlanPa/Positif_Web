@@ -1,25 +1,78 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-            
-        
         <title>mediums</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <center><h1>John Doe</h1></center>
-        <center><img src="1.jpg"></center>
-        
-    <div id ="Sidenav" class="sidenav">
-        <a href="index.html">Profil</a>
-        <a href="mediums.html">Médiums</a>
-        <a href="historique.html">Historique</a>
-        <a href="parametres.html">Paramètres</a>
-        <a href="../../../../../Téléchargements/Service.java"></a>
-    </div>
+        <center>
+            <table id="tableau" style="border: 1px solid black;">
+                
+            </table>
+        </center>
+
+        <div id ="Sidenav" class="sidenav">
+            <a href="accueilClient.html">Profil</a>
+            <a href="mediums.html">Médiums</a>
+            <a href="historiqueClient.html">Historique</a>
+            <a href="parametres.html">Paramètres</a>
+        </div>
         <button class = "button" onclick ="location.href = 'index.html';" >Deconnexion</button>
-    </body>
-    
+        
+        <script>
+        function recupMedium()
+            {
+                var mediums;
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        action: 'recupererMedium'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    mediums=data;
+                    var res = "<th>Nom</th><th>Specialité</th>";
+                    for(var i in data)
+                    {
+                       res+="<tr>" ;
+                       res+="<td>"+mediums[i].nom+"</td>";
+                       res+="<td>"+mediums[i].spec+"</td>";
+                       res+="<td onclick='demander("+mediums[i].id+")'>Demander</td>";
+                       res+="</tr>" ;
+                    }
+                    document.getElementById('tableau').innerHTML = res;
+                    
+                }).fail(function(){
+                    $('#message').html('Echec. ');        
+                });
+            }
+            function demander(id)
+            {
+                console.log("voyance demandée avec le médium "+id);
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        action: 'demanderVoyance',
+                        id: id
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    
+                }).fail(function(){
+                    $('#message').html('Echec. ');        
+                });
+            }
+
+            $(document).ready(function () {
+                console.log("avant recup medium");
+                recupMedium();
+                console.log("après recup medium");
+            });
+            
+        </script>        
+    </body>    
 </html>

@@ -17,7 +17,9 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import service.Service;
@@ -192,6 +194,41 @@ public class Action
     
     public static void Modification(HttpServletRequest request)
     {
-        
+        List <String> mod = new ArrayList <String>();
+        mod.add(request.getParameter("prenom"));
+        mod.add(request.getParameter("nom"));
+        mod.add(request.getParameter("civilite"));
+        mod.add(request.getParameter("mail"));
+        mod.add(request.getParameter("adresse"));
+        mod.add(request.getParameter("tel"));
+        Client cl = Service.obtenirClient(request.getParameter("mail"));
+        Service.modifierInfosClients(cl, mod);
+    }
+
+    public static String RecupererMedium(HttpServletRequest request, HttpSession session) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonObject jsonConnex = new JsonObject();
+  
+        JsonArray historique = new JsonArray();
+        for (Medium m: Service.getListeMediums())
+        {
+            JsonObject medium = new JsonObject();
+            medium.addProperty("nom", m.getNom());
+            System.out.println(m.getClass().toString());
+            medium.addProperty("spec", m.getClass().toString().substring(15));
+            medium.addProperty("id", m.getId());
+            historique.add(medium);
+
+        }
+        jsonConnex.add("historique", historique);
+        return(gson.toJson(historique));
+    }
+    
+    public static void DemanderVoyance(HttpServletRequest request, HttpSession session)
+    {
+        System.out.println("id : "+request.getParameter("id"));
+        Medium m = Service.obtenirMedium(Long.parseLong(request.getParameter("id")));        
+        Client c = Service.obtenirClient(session.getAttribute("mail").toString());
+        Service.demanderVoyance(c, m);
     }
 }

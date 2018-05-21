@@ -15,11 +15,7 @@ and open the template in the editor.
     <body>
     <center>
         <table id="tableau" style="border: 1px solid black;">
-            <tr>
-                <th> Date</th>
-                <th> Durée</th>
-                <th> Médium</th>
-            </tr>
+            
         </table>
     </center>
         
@@ -36,16 +32,16 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                    var hist = data.historique;
-                    var res="";
-                    for(var i in hist)
+                    var res="<tr><th> Date</th><th> Durée</th><th> Médium</th></tr>";
+                    for(var i in data)
                     {
                        res+="<tr>" ;
-                       res+= "<td>"+hist[i].date+"</td><td>"+hist[i].duree+"</td><td>"+hist[i].nom+"</td>";
+                       res+= "<td>"+data[i].date+"</td><td>"+data[i].duree+"</td><td>"+data[i].nom+"</td>";
                        res+="</tr>" ;
                     }
+                    console.log(res);
                     
-                    $('#tableau').innerHTML(res);
+                    document.getElementById('tableau').innerHTML = res;
                     
                 }).fail(function(){
                     $('#message').html('Echec. ');        

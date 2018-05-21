@@ -8,6 +8,13 @@ body {
     
 }
 
+#accClient
+{
+    width: 85%;
+    position:absolute;
+    right:0px;
+}
+
 h1
 {
     font-family: URW Chancery L, cursive;
@@ -15,7 +22,7 @@ h1
 
  .sidenav {
     height: 100%;
-    width: 250px;
+    width: 15%;
     position: fixed;
     z-index: 1;
     top: 0;

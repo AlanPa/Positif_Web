@@ -155,7 +155,7 @@ public class Action
         String prenom = session.getAttribute("prenom").toString();
         String nom = session.getAttribute("nom").toString();
         String animal = session.getAttribute("animal").toString();
-        String zodiaque = session.getAttribute("prenom").toString();
+        String zodiaque = session.getAttribute("zodiaque").toString();
         String chinois = session.getAttribute("chinois").toString();
         String couleur = session.getAttribute("couleur").toString();
         

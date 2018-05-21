@@ -77,26 +77,31 @@ and open the template in the editor.
             
             function Modification()
             {
-                var adresse = document.getElementById('adresse');
-                var tel = document.getElementById('tel');
-                
+                var champPrenom = $('#prenom').val();
+                var champNom = $('#nom').val();
+                var champCivilite = $('#civilite').val();
+                var champDate = $('#date').val();
+                var champMail = $('#mail').val();
+                var champAdresse = $('#adresse').val();
+                var champTel = $('#tel').val();
+
                 $.ajax({
                     url: './ActionServlet',
                     method: 'POST',
                     data: {
-                    action: 'obtenirClient'
+                        action: 'inscription',
+                        prenom: champPrenom,
+                        nom: champNom,
+                        civilite: champCivilite,
+                        date: champDate,
+                        mail: champMail,
+                        adresse: champAdresse,
+                        tel: champTel,
+   
                     },
-                    dataType: 'json'
+                    dataType: 'text'
                 }).done(function (data) {
-                    var personne = data.infos;
-                    console.log(personne.date);
-                    prenom.value = personne.prenom;
-                    nom.value = personne.nom;
-                    civilite.value = personne.civilite;
-                    date.value = personne.date;
-                    mail.value = personne.mail;
-                    adresse.value = personne.adresse;
-                    tel.value = personne.tel;  
+                    window.location.href='parametres.html'
                 });
             }
             

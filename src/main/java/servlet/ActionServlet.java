@@ -58,7 +58,11 @@ public class ActionServlet extends HttpServlet {
                         break;
                 case "deconnexion":
                         Action.Deconnexion(session);
+                        session.invalidate();
                         break;
+                case "modification" :
+                    Action.Modification(request);
+                    break;
                 default:
                     break;
             }

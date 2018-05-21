@@ -73,8 +73,48 @@ and open the template in the editor.
                 });
                 
             }
-             $(document).ready(function () {
+             
+            
+            function Modification()
+            {
+                var adresse = document.getElementById('adresse');
+                var tel = document.getElementById('tel');
+                
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                    action: 'obtenirClient'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    var personne = data.infos;
+                    console.log(personne.date);
+                    prenom.value = personne.prenom;
+                    nom.value = personne.nom;
+                    civilite.value = personne.civilite;
+                    date.value = personne.date;
+                    mail.value = personne.mail;
+                    adresse.value = personne.adresse;
+                    tel.value = personne.tel;  
+                });
+            }
+            
+            $(document).ready(function () {
                     recupInfos();
+                    var addr = document.getElementById('adresse');
+                    var tel = document.getElementById('tel');
+                    var val =document.getElementById("bouton_valider");
+                    addr.onchange = function() {
+                        val.disabled = false ;
+                    }
+                    tel.onchange = function() {
+                        val.disabled = false ;
+                    }
+                    
+                    val.onclick = function() {
+                    Modification();
+                     };
             });
             
         </script>

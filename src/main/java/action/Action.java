@@ -119,7 +119,6 @@ public class Action
 }
     
     public static String ObtenirClient(HttpServletRequest request, HttpSession session){
-        
         String prenom = session.getAttribute("prenom").toString();
         String nom = session.getAttribute("nom").toString();
         String animal = session.getAttribute("animal").toString();
@@ -189,5 +188,10 @@ public class Action
                 session.removeAttribute("zodiaque");
                 session.removeAttribute("chinois");
                 session.removeAttribute("mail");
+    }
+    
+    public static void Modification(HttpServletRequest request)
+    {
+        
     }
 }

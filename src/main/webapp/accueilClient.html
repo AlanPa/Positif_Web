@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-            
-        
         <title>Accueil Client</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -11,16 +8,16 @@
     </head>
     <body>
         <div id ="accClient">
+            <button class = "button" id="dec" onclick = "deconnexion()" >Déconnexion</button>
             
-        <button class = "button" onclick = deconnexion(); >Déconnexion</button>
-        <center><h1 id="nomPersonne">John Doe</h1></center>
-        <center><img src="1.jpg"></center>
-        <section class = "wrapper" id="infos">
-            <div id="zodiaque" class="zodiaque"></div>
-            <div id="animal" class="animal"></div>
-            <div id="couleur" class="couleur"></div>
-            <div id="chinois" class="chinois"></div>
-        </section>
+            <center><h1 id="nomPersonne">John Doe</h1></center>
+            <center><img src="1.jpg"></center>
+            <section class = "wrapper" id="infos">
+                <div id="zodiaque" class="zodiaque"></div>
+                <div id="animal" class="animal"></div>
+                <div id="couleur" class="couleur"></div>
+                <div id="chinois" class="chinois"></div>
+            </section>
         </div>
         
         <div id ="Sidenav" class="sidenav">
@@ -31,9 +28,7 @@
             <a href="../../../../../Téléchargements/Service.java"></a>
             <!-- Attention, ce chemin est plus ou moins absolu ! -->
         </div>
-            <!-- faire quelque chose pour fermer la session -->
-            
-            <script>
+        <script>
             function deconnexion(){
                 $.ajax({
                 url: './ActionServlet',

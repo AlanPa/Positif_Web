@@ -29,20 +29,13 @@
                 session.removeAttribute("chinois");
             }
             function affiche() {
+                
                 var nomPersonne = document.getElementById('nomPersonne');
                 var zodiaque = document.getElementById('zodiaque');
                 var animal = document.getElementById('animal');
                 var couleur = document.getElementById('couleur');
                 var chinois = document.getElementById('chinois');
                 
-                nomPersonne.innerHTML = "<h1 id='nomPersonne'>"+personne.nom+" "+personne.prenom+"</h1>";
-                zodiaque.innerHTML = "<p>Signe du Zodiaque</br>"+personne.zodiaque+"</p>";
-                animal.innerHTML = "<p>Animal totem</br>"+personne.animal+"</p>";
-                couleur.innerHTML = "<p>Couleur porte-bonheur</br>"+personne.couleur+"</p>";
-                chinois.innerHTML = "<p>Signe astrologique</br>"+personne.chinois+"</p>";
-                
-            }
-            $(document).ready(function () {
                 $.ajax({
                     url: './ActionServlet',
                     method: 'POST',
@@ -54,10 +47,14 @@
                     console.log("On est dans l'accueil !");
                     var personne = data.infos;
                     nomPersonne.innerHTML = personne.nom+" "+personne.prenom;
+                    zodiaque.innerHTML = "<p>Signe du Zodiaque</br>"+personne.zodiaque+"</p>";
+                    animal.innerHTML = "<p>Animal totem</br>"+personne.animal+"</p>";
+                    couleur.innerHTML = "<p>Couleur porte-bonheur</br>"+personne.couleur+"</p>";
+                    chinois.innerHTML = "<p>Signe astrologique</br>"+personne.chinois+"</p>";
                 });
                 
-                
             }
+            
             $(document).ready(function () {
                affiche(); 
             });
